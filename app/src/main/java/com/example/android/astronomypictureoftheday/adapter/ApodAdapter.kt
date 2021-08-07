@@ -9,13 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.astronomypictureoftheday.databinding.ListImageBinding
 import com.example.android.astronomypictureoftheday.model.ApodImage
 
-class ApodAdapter : ListAdapter<ApodImage, ApodAdapter.ApodViewHolder>(DiffCallback) {
+class ApodAdapter(val onClickListener: OnClickListener) :
+    ListAdapter<ApodImage, ApodAdapter.ApodViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApodViewHolder {
         return ApodViewHolder(ListImageBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: ApodViewHolder, position: Int) {
         val apodImage = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(apodImage)
+        }
         holder.bind(apodImage)
     }
 
@@ -29,11 +33,15 @@ class ApodAdapter : ListAdapter<ApodImage, ApodAdapter.ApodViewHolder>(DiffCallb
         }
     }
 
-    class ApodViewHolder(private var binding: ListImageBinding):
+    class ApodViewHolder(private var binding: ListImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(apodImage: ApodImage) {
             binding.apodImage = apodImage
             binding.executePendingBindings()
         }
+    }
+
+    class OnClickListener(val clickListener: (apodImage: ApodImage) -> Unit) {
+        fun onClick(apodImage: ApodImage) = clickListener(apodImage)
     }
 }
