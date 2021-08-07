@@ -30,7 +30,7 @@ fun List<NetworkImage>.asModel(): List<ApodImage> {
     }
 }
 
-fun List<NetworkImage>.asEntity(): List<ApodEntity> {
+fun List<NetworkImage>.asEntity(): Array<ApodEntity> {
     return map{
         ApodEntity(
             date = it.date,
@@ -39,5 +39,5 @@ fun List<NetworkImage>.asEntity(): List<ApodEntity> {
             description = it.description,
             url = it.url
         )
-    }
+    }.toTypedArray()
 }

@@ -12,7 +12,7 @@ private const val BASE_URL = "https://api.nasa.gov/planetary/"
 
 interface ApodService {
     @GET("apod?api_key=vMBSyGSLzatV3PJp6gh2Yt1hNP9vq4ThZlcItGJd")
-    fun getApodImages(@Query("start_date") startDate: String): List<NetworkImage>
+    suspend fun getApodImages(@Query("start_date") startDate: String): List<NetworkImage>
 }
 
 private val moshi = Moshi.Builder()

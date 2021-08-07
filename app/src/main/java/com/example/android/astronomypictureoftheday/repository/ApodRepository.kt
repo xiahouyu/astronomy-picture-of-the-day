@@ -21,7 +21,7 @@ class ApodRepository(private val database: ApodDatabase) {
     suspend fun refreshImages() {
         withContext(Dispatchers.IO) {
             val networkImages = ApodNetworkApi.networkImages.getApodImages(startDate)
-            database.apodDao.insertAll(networkImages.asEntity())
+            database.apodDao.insertAll(*networkImages.asEntity())
         }
     }
 }

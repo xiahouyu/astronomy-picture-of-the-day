@@ -6,7 +6,7 @@ import com.example.android.astronomypictureoftheday.model.ApodImage
 
 @Entity(tableName = "daily_astronomy_picture_table")
 data class ApodEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val date: String,
     val title: String,
     val type: String,
