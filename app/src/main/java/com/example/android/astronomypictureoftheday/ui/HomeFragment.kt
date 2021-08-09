@@ -43,7 +43,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        setHasOptionsMenu(true)
         return binding.root
     }
 
