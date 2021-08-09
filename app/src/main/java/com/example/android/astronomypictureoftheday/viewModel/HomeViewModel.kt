@@ -1,6 +1,9 @@
 package com.example.android.astronomypictureoftheday.viewModel
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.lifecycle.*
 import com.example.android.astronomypictureoftheday.database.getDatabase
 import com.example.android.astronomypictureoftheday.model.ApodImage
@@ -18,8 +21,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         get() = _navigateToSelectedCard
 
     init {
-        viewModelScope.launch {
-            imagesRepository.refreshImages()
+        val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnected == true
+
+        if (isConnected) {
+            viewModelScope.launch {
+                imagesRepository.refreshImages()
+            }
         }
     }
 
@@ -42,6 +51,5 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun displayCardDetailsComplete() {
         _navigateToSelectedCard.value = null
     }
-
 
 }
