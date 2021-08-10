@@ -27,7 +27,6 @@ class CardFragment : Fragment() {
     }
 
     private fun getShareIntent() : Intent {
-        val args = CardFragmentArgs.fromBundle(requireArguments())
         return ShareCompat.IntentBuilder.from(requireActivity())
             .setType("image/*")
             .intent

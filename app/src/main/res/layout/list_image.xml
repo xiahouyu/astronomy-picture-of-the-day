@@ -8,13 +8,19 @@
         <variable
             name="apodImage"
             type="com.example.android.astronomypictureoftheday.model.ApodImage" />
+
+        <variable
+            name="onClickListener"
+            type="com.example.android.astronomypictureoftheday.adapter.ApodOnClickListener" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:onClick="@{() -> onClickListener.onClick(apodImage)}">
 
         <LinearLayout
             android:layout_width="match_parent"
