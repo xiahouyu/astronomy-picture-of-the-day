@@ -17,7 +17,7 @@
         android:name="com.example.android.astronomypictureoftheday.ui.CardFragment"
         android:label="CardFragment">
         <argument
-            android:name="selectedCard"
-            app:argType="com.example.android.astronomypictureoftheday.model.ApodImage" />
+            android:name="apodImageDate"
+            app:argType="string" />
     </fragment>
 </navigation>

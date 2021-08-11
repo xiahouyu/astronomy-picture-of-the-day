@@ -11,14 +11,8 @@ import com.example.android.astronomypictureoftheday.repository.ApodRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-    private val dateabse = getDatabase(application)
-    private val imagesRepository = ApodRepository(dateabse)
-
-    private val _navigateToSelectedCard = MutableLiveData<ApodImage>()
-
-    // The external immutable LiveData for the navigation property
-    val navigateToSelectedCard: LiveData<ApodImage>
-        get() = _navigateToSelectedCard
+    private val database = getDatabase(application)
+    private val imagesRepository = ApodRepository(database)
 
     init {
         val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -44,8 +38,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun displayCardDetails(apodImage: ApodImage) {
-        _navigateToSelectedCard.value = apodImage
+    private val _navigateToSelectedCard = MutableLiveData<String>()
+
+    // The external immutable LiveData for the navigation property
+    val navigateToSelectedCard: LiveData<String>
+        get() = _navigateToSelectedCard
+
+    fun displayCardDetails(dateString: String) {
+        _navigateToSelectedCard.value = dateString
     }
 
     fun displayCardDetailsComplete() {

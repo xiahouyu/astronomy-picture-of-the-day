@@ -31,8 +31,8 @@ class HomeFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        binding.recyclerView.adapter = ApodAdapter(ApodOnClickListener{
-            viewModel.displayCardDetails(it)
+        binding.recyclerView.adapter = ApodAdapter(ApodOnClickListener{ dateString ->
+            viewModel.displayCardDetails(dateString)
         })
 
         viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {

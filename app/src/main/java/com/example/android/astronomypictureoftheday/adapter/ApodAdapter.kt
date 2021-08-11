@@ -40,6 +40,6 @@ class ApodAdapter(private val onClickListener: ApodOnClickListener) :
 
 }
 
-class ApodOnClickListener(val clickListener: (apodImage: ApodImage) -> Unit) {
-    fun onClick(apodImage: ApodImage) = clickListener(apodImage)
+class ApodOnClickListener(val clickListener: (apodImageDate: String) -> Unit) {
+    fun onClick(apodImageDate: String) = clickListener(apodImageDate)
 }

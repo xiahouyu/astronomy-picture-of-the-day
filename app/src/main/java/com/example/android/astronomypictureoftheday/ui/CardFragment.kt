@@ -14,14 +14,19 @@ import com.example.android.astronomypictureoftheday.viewModel.CardViewModel
 
 class CardFragment : Fragment() {
     private val args: CardFragmentArgs by navArgs()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+        val apodImageDate = args.apodImageDate
         val application = requireNotNull(activity).application
+
         val binding = FragmentCardBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-        val apodImage = args.selectedCard
+
         binding.viewModel = ViewModelProvider(
-            this, CardViewModel.Factory(apodImage, application)).get(CardViewModel::class.java)
+            this, CardViewModel.Factory(apodImageDate, application)).get(CardViewModel::class.java)
+        binding.lifecycleOwner = this
+
         setHasOptionsMenu(true)
         return binding.root
     }
